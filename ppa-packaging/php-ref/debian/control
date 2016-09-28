@@ -1,0 +1,22 @@
+Source: php-ref
+Section: php
+Priority: optional
+Maintainer: Bogdan Padalko <pinepain@gmail.com>
+Build-Depends: debhelper (>= 9),
+               dh-php (>= 0.12~),
+               php-all-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/pinepain/php-ref
+Vcs-Browser: https://github.com/pinepain/php-ref
+Vcs-Git: https://github.com/pinepain/php-ref.git
+
+Package: php-ref
+Architecture: any
+Depends: ${misc:Depends},
+         ${php:Depends},
+         ${shlibs:Depends}
+Provides: ${php:Provides}
+Description: PHP 7 extension that adds Soft and Weak references support to PHP
+ This extension adds Soft Reference and Weak References to PHP 7
+ and may serve as a ground for other data structures
+ that require advanced referencing model.
