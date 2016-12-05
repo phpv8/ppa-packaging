@@ -1,0 +1,90 @@
+#!/usr/bin/make -f
+
+# This needs to run before inclusion of CDBS snippets
+debian/control:: debian/control.in
+DEB_PHONY_RULES += debian/control.in
+debian/control.in::
+	sed $(foreach re,API ABI ARCHS,-e 's/__$(re)__/$($(re))/g') \
+		< debian/control.in.in > debian/control.in
+
+include /usr/share/dpkg/default.mk
+
+include /usr/share/cdbs/1/rules/upstream-tarball.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/class/makefile.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+CLEAN_UPSTREAM_VERSION=$(shell echo $(DEB_UPSTREAM_VERSION) | sed 's/~dfsg\d*$$//')
+
+# See README.source for details on these.
+MAJOR = $(word 1, $(subst .,$(space), $(CLEAN_UPSTREAM_VERSION)))
+MINOR = $(word 2, $(subst .,$(space), $(CLEAN_UPSTREAM_VERSION)))
+BUILD = $(word 3, $(subst .,$(space), $(CLEAN_UPSTREAM_VERSION)))
+
+API = $(MAJOR).$(MINOR)
+ABI = $(MAJOR).$(MINOR).$(BUILD)
+
+LIBSTEM = libv8.so
+
+# Supported archs
+ARCHS = amd64
+
+# allow parallel builds
+DEB_BUILD_PARALLEL=1
+
+# suppress checking binary files, to not upset dpkg-source
+DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^.+$
+extend-diff-ignore =
+
+# dpkg-gensymbols(1) - this is not needed since we are not using symbols
+# DEB_DH_MAKESHLIBS_ARGS = -- -c4
+
+# map HOST ARCH AND OS to v8 options
+v8arch := $(or $(v8arch),$(if $(filter i386,$(DEB_HOST_ARCH)),x86))
+v8arch := $(or $(v8arch),$(if $(filter amd64,$(DEB_HOST_ARCH)),x64))
+v8arch := $(or $(v8arch),$(DEB_HOST_ARCH))
+
+DEB_MAKE_CLEAN_TARGET = clean
+DEB_MAKE_BUILD_TARGET = $(v8arch).release
+
+outdir = $(CURDIR)/v8/out.gn/$(v8arch).release
+v8out = $(outdir)/$(LIBSTEM).$(ABI)
+d8out = $(outdir)/d8
+
+
+package = libv8-$(API)
+package_main = libv8-$(ABI)
+package_dev = libv8-$(API)-dev
+
+TMP_LIB_DIR = $(CURDIR)/debian/tmp/opt_lib/$(package)/lib
+TMP_INCLUDE_DIR = $(CURDIR)/debian/tmp/opt_include/$(package)/include
+
+SHELL := /bin/bash
+PATH := $(CURDIR)/depot_tools:$(PATH)
+
+
+# Setup dynamically named debhelper install file during build
+pre-build::
+	cp -f debian/libv8.install debian/$(package_main).install
+	cp -f debian/libv8-dev.install debian/$(package_dev).install
+clean::
+	rm -f debian/$(package_main).install
+	rm -f debian/$(package_dev).install
+
+clean::
+	rm -f debian/libv8*.new.abi
+	rm -f debian/acc_report.html
+
+
+common-install-impl::
+	mkdir -p $(TMP_LIB_DIR) ; \
+	cd $(TMP_LIB_DIR) ; \
+	cp $(outdir)/*.so . ; \
+	cp $(outdir)/icudtl.dat . ; \
+	cp $(outdir)/d8 . ; \
+	mkdir -p $(TMP_INCLUDE_DIR) ; \
+	cd $(TMP_INCLUDE_DIR) ; \
+	cp -R $(CURDIR)/v8/include/*.h . ; \
+	mkdir -p $(TMP_INCLUDE_DIR)/libplatform ; \
+	cd $(TMP_INCLUDE_DIR)/libplatform ; \
+	cp -R $(CURDIR)/v8/include/libplatform/*.h . ; \

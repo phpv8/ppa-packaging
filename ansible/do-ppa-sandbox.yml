@@ -1,0 +1,33 @@
+- name: Setup and configure Digitalocean droplets
+  hosts: digitalocean
+
+  vars:
+    do_droplets:
+      - name: ppa-sandobox
+        size: 8gb
+        region: ams2
+        image: ubuntu-16-04-x64
+
+  roles:
+    - do
+
+- name: Setup and configure PPA sandbox machine
+  hosts: ppa-sandobox
+  become: yes
+  become_method: sudo
+
+  vars:
+    system_swap_file_path: /swapfile
+    system_swap_file_size_mb: 512
+
+    system_install_packages:
+      - cdbs
+      - devscripts
+      - dh-buildinfo
+      - pkg-config
+      - htop
+      - curl
+
+  roles:
+    - system
+    - ppa

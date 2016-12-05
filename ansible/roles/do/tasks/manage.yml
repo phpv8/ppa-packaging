@@ -1,0 +1,51 @@
+#- debug: var=outer_item
+
+- name: ensure droplets presence
+  digital_ocean:
+    command: droplet
+    state: "{{ outer_item.state | default('present') }}"
+    name: "{{ outer_item.name }}"
+    unique_name: yes
+    size_id: "{{ outer_item.size | default('512mb') }}"
+    region_id: "{{ outer_item.region | default('ams2') }}"
+    image_id: "{{ outer_item.image | default('ubuntu-16-04-x64') }}"
+    ssh_key_ids: "{{ do_ansible_ssh_key.ssh_key.id }}"
+#    api_token: "{{ do_token }}"
+    user_data: "{{ lookup('template', './roles/do/templates/cloud_init.j2') | trim }}"
+    private_networking: "{{ outer_item.private_network | default('no') }}"
+  register: do_droplet_result
+
+- name: Display droplet IP
+  debug:
+    msg: "Droplet IP is {{ do_droplet_result['droplet']['networks']['v4'][0]['ip_address'] }}, to connect run 'ssh ansible@{{ do_droplet_result['droplet']['networks']['v4'][0]['ip_address'] }}'"
+  when: "{{ 'droplet' in do_droplet_result }}"
+
+- name: ensure DNS present/absent
+  digital_ocean_domain:
+    state: "{{ 'present' if 'droplet' in do_droplet_result else 'absent' }}"
+    name: "{{ item }}"
+#    id: "{{ do_droplet_result.droplet.id if 'droplet' in do_droplet_result else None }}"
+    ip: "{{ do_droplet_result.droplet.ip_address if 'droplet' in do_droplet_result else None }}"
+#    api_token: "{{ do_token }}"
+#  #TODO: add domain removing support
+  when: "{{ 'droplet' in do_droplet_result }}"
+  with_items: "{{ outer_item.domains if 'domains' in outer_item else [] }}"
+  register: domain
+
+#- debug: var=domain
+
+
+- name: Add new droplet to inventory
+  add_host:
+    name: "{{ outer_item.name }}"
+    groups: "{{ outer_item.group | default ('do_droplets_group')}}"
+    ansible_ssh_host: "{{ do_droplet_result.droplet.ip_address }}"
+    ansible_ssh_user: "{{ do_droplet_result.droplet.user | default('ansible') }}"
+    ansible_ssh_private_key_file: "{{ do_ssh_key_private_file }}"
+    ansible_python_interpreter: "{{ outer_item.python | default('python2.7') }}"
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+  when: "{{ 'droplet' in do_droplet_result }}"
+
+
+
+

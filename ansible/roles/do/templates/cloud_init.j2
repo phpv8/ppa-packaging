@@ -1,0 +1,12 @@
+#cloud-config
+
+users:
+  - name: ansible
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - {{ lookup('file', do_ssh_key_file) }}
+
+packages:
+  - python2.7

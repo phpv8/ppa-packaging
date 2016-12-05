@@ -1,0 +1,41 @@
+- name: set timezone
+  copy: content="{{ system_timezone }}"
+        dest=/etc/timezone
+  notify: update tzdata
+  become: true
+
+- include: swap.yml
+  when: '"no_swap" not in hostvars[inventory_hostname]'
+
+- include: secure-ssh.yml
+
+- name: Set vm.swappiness
+  sysctl: name=vm.swappiness value=5 state=present
+
+- name: Set vm.vfs_cache_pressure
+  sysctl: name=vm.vfs_cache_pressure value=50 state=present
+
+- name: Apt-get update before installing
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install Essential Packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_flattened:
+    - "{{ system_install_essential_packages }}"
+    - "{{ system_install_packages }}"
+
+- name: Remove preinstalled packages
+  apt:
+    pkg: "{{ item }}"
+    state: absent
+    autoremove: yes
+  with_flattened:
+    - "{{ system_remove_essential_packages }}"
+    - "{{ system_remove_packages }}"
+
+- include: user.yml
+  with_items: "{{ system_users }}"
+  loop_control:
+    loop_var: user_item

@@ -1,0 +1,19 @@
+- name: ensure ansible ssh key exists locally
+  user: >
+    name={{ ansible_user_id }}
+    generate_ssh_key=yes
+    ssh_key_file={{ do_ssh_key_file }}
+
+- name: ensure ansible key exists at DigitalOcean
+  digital_ocean: >
+    state=present
+    command=ssh
+    name={{ do_ssh_key_name }}
+    ssh_pub_key={{ lookup('file', do_ssh_key_file) }}
+#    api_token={{ do_token }}
+  register: do_ansible_ssh_key
+
+- include: manage.yml
+  with_items: "{{ do_droplets }}"
+  loop_control:
+    loop_var: outer_item

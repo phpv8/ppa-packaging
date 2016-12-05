@@ -1,0 +1,7 @@
+do_token:
+do_ssh_key_name: "{{ lookup('env', 'DO_SSH_KEY_NAME') | default('Default SSH key') }}"
+do_ssh_key_file: "{{ lookup('env', 'DO_SSH_PUBLIC_KEY_PATH') | default('~/.ssh/id_rsa.pub') }}"
+do_ssh_key_private_file: "{{ lookup('env', 'DO_SSH_PRIVATE_KEY_PATH') | default('~/.ssh/id_rsa') }}"
+do_ensure_ssh_key: yes
+do_droplets: []
+do_domains: []

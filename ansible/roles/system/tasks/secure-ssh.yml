@@ -1,0 +1,13 @@
+---
+  - name: Disallow root SSH access
+    action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+    notify: Restart sshd
+
+  - name: Disallow password authentication
+    action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+    notify: Restart sshd
+
+  - name: Change default ssh port
+    action: lineinfile dest=/etc/ssh/sshd_config regexp="^Port" line="Port {{ security_ssh_port }}" state=present
+    when: '"security_ssh_port" in hostvars[inventory_hostname]'
+    notify: Restart sshd

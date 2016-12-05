@@ -1,0 +1,62 @@
+- name: Add user
+  user:
+    name: "{{ user_item.name }}"
+    home: "/home/{{ user_item.name }}"
+    password: "{{ user_item.password | default('') }}"
+    shell: "{{ user_item.shell | default('/bin/bash') }}"
+    generate_ssh_key: "{{ 'generate_ssh_key' in user_item }}"
+    ssh_key_bits: "{{ user_item.ssh_key_bits | default(4096) }}"
+    ssh_key_file: "{{ user_item.ssh_key_file | default('.ssh/id_rsa') }}"
+
+- name: Add user to groups
+  user:
+    name: "{{ user_item.name }}"
+    groups: "{{ user_item.groups }}"
+  when: "{{ 'groups' in user_item }}"
+
+- name: Install .bashrc file
+  copy:
+    src: .bashrc
+    dest: "/home/{{ user_item.name }}/.bashrc"
+
+- name: Add authorized key for users
+  authorized_key:
+    user: "{{ user_item.name }}"
+    key: "{{ item }}"
+  with_items: "{{ user_item.authorized_keys | default([]) }}"
+
+- name: Ensure user .ssh directory exists.
+  file:
+    dest: ~/.ssh/
+    mode: 0700
+    owner: "{{ user_item.name }}"
+    state: directory
+  become: yes
+  become_user: "{{ user_item.name }}"
+
+- name: Install user ssh keys
+  copy:
+    content: "{{ item.value }}"
+    dest: "{{ item.key }}"
+    mode: "{{ 0644 if item.key.endswith('.pub') else 0600 }}"
+    owner: "{{ user_item.name }}"
+  with_dict: "{{ user_item.ssh_keys | default({}) }}"
+  no_log: true
+  become: yes
+  become_user: "{{ user_item.name }}"
+
+- name: Add user to sudoers
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/20-{{ user_item.name }}"
+    owner: root
+    group: root
+    mode: 0440
+    validate: 'visudo -cf %s'
+  when: '"sudo" in user_item and user_item.sudo'
+
+- name: Remove users from sudoers
+  file:
+    path: "/etc/sudoers.d/20-{{ user_item.name }}"
+    state: "{{ 'file' if 'sudo' in user_item and user_item.sudo else 'absent' }}"
+

@@ -1,0 +1,2 @@
+ppa_repo_url: https://github.com/pinepain/ppa-packaging.git
+ppa_clone_directory: ~/ppa-packaging

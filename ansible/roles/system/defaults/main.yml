@@ -1,0 +1,23 @@
+system_timezone: Etc/UTC
+system_swap_file_path: /swapfile
+system_swap_file_size_mb: 512
+system_users: []
+
+system_install_packages: []
+system_remove_packages: []
+
+system_install_essential_packages:
+  - ntp
+  - vim
+  - curl
+  - htop
+  - git
+  - apache2-utils
+  - screen
+
+system_remove_essential_packages:
+  - apache2
+  - apache2-bin
+  - apache2-data
+  - puppet
+  - chef
