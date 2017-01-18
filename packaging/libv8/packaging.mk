@@ -1,9 +1,6 @@
 # PPA archive
 #PPA=ppa:username/ppa-name
 
-# List of target distributions
-DISTROS=trusty wily xenial
-
 DEBUILD=debuild -S
 
 all: _phony

@@ -1,5 +1,5 @@
 # List of target distributions
-DISTROS=trusty wily xenial
+DISTROS=trusty xenial yakkety
 
 PECL_FULL_NAME=${PECL_NAME}-${VERSION}
 

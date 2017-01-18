@@ -1,6 +1,5 @@
-# PPA archive
-#PPA=ppa:username/ppa-name
-
+# List of target distributions
+DISTROS=trusty xenial yakkety
 
 DEBUILD=debuild -S
 
