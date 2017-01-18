@@ -39,3 +39,7 @@
   with_items: "{{ system_users }}"
   loop_control:
     loop_var: user_item
+
+- name: Install Essential Packages
+  shell: "curl -sSL https://agent.digitalocean.com/install.sh | sh"
+  become: true
