@@ -2,13 +2,12 @@
 GIT_URL=https://chromium.googlesource.com/v8/v8.git
 
 # Tag name or commit hash for checkout
-GIT_VERSION=5.7.514
+GIT_VERSION=5.8.172
 
 GIT_FAST=1
-GIT_CLONE_HOOK=./add-gclient.sh
 
 # Package name
-NAME=libv8-5.7
+NAME=libv8-5.8
 
 # Package version
 VERSION=$(GIT_VERSION)
