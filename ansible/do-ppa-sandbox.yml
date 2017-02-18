@@ -27,6 +27,7 @@
       - pkg-config
       - htop
       - curl
+      - php-all-dev
 
   roles:
     - system
