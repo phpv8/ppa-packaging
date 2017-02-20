@@ -15,7 +15,8 @@ Package: php-v8
 Architecture: any
 Depends: ${misc:Depends},
          ${php:Depends},
-         ${shlibs:Depends}
+         ${shlibs:Depends},
+         libv8-5.8.172
 Provides: ${php:Provides}
 Description:  PHP extension for V8 JavaScript engine
  This extension brings V8 JavaScript engine API to PHP with some
