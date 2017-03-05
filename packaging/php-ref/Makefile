@@ -7,7 +7,7 @@ PECL_NAME=ref
 NAME=php-${PECL_NAME}
 
 # Package version
-VERSION=0.4.1
+VERSION=0.4.2
 
 # Tag name or commit hash for checkout
 GIT_VERSION="v${VERSION}"
@@ -19,3 +19,4 @@ PPA_VERSION=1
 PPA=ppa:pinepain/php-ref
 
 include ../packaging-pecl.mk
+include ../packaging-base.mk
