@@ -14,14 +14,14 @@ Vcs-Git: https://github.com/pinepain/php-v8.git
 Package: libv8-5.8-dev
 Section: libdevel
 Architecture: amd64
-Depends: libv8-5.8.172 (= ${binary:Version}), ${misc:Depends}
+Depends: libv8-5.8.283 (= ${binary:Version}), ${misc:Depends}
 Description: V8 JavaScript engine - development files for 5.8 branch
  V8 is a high performance JavaScript engine written in C++.  It is used
  in the web browser Chromium.
  .
  This package provide development headers for V8 5.8 branch.
 
-Package: libv8-5.8.172
+Package: libv8-5.8.283
 Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: V8 JavaScript engine - runtime library
@@ -34,7 +34,7 @@ Package: libv8-5.8-dbg
 Priority: extra
 Section: debug
 Architecture: amd64
-Depends: libv8-5.8.172 (= ${binary:Version}), ${misc:Depends}
+Depends: libv8-5.8.283 (= ${binary:Version}), ${misc:Depends}
 Description: V8 JavaScript engine - debugging symbols
  V8 is a high performance JavaScript engine written in C++.  It is used
  in the web browser Chromium.
