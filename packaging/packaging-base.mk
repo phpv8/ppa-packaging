@@ -1,5 +1,5 @@
 # List of target distributions
-DISTROS=trusty xenial yakkety
+DISTROS=trusty xenial yakkety zesty
 
 DEBUILD=debuild -S
 
