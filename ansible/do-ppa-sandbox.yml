@@ -20,6 +20,10 @@
     system_swap_file_path: /swapfile
     system_swap_file_size_mb: 512
 
+    system_ppas:
+      - ppa:ondrej/php
+      - ppa:pinepain/libv8-6.0
+
     system_install_packages:
       - cdbs
       - devscripts
@@ -28,6 +32,8 @@
       - htop
       - curl
       - php-all-dev
+      - dh-php
+      - libv8-6.0-dev
 
   roles:
     - system

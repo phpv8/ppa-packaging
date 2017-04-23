@@ -4,6 +4,12 @@
   notify: update tzdata
   become: true
 
+- name: add thirdparty PPA repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items: "{{ system_ppas }}"
+
 - include: swap.yml
   when: '"no_swap" not in hostvars[inventory_hostname]'
 

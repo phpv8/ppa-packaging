@@ -6,6 +6,8 @@ system_users: []
 system_install_packages: []
 system_remove_packages: []
 
+system_ppas: []
+
 system_install_essential_packages:
   - ntp
   - vim
