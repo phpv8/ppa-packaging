@@ -12,7 +12,7 @@
   user:
     name: "{{ user_item.name }}"
     groups: "{{ user_item.groups }}"
-  when: "{{ 'groups' in user_item }}"
+  when: "user_item.group is defined"
 
 - name: Install .bashrc file
   copy:
@@ -53,7 +53,7 @@
     group: root
     mode: 0440
     validate: 'visudo -cf %s'
-  when: '"sudo" in user_item and user_item.sudo'
+  when: 'user_item.sudo is defined and user_item.sudo'
 
 - name: Remove users from sudoers
   file:
