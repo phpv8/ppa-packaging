@@ -53,7 +53,7 @@ d8out = $(outdir)/d8
 
 
 package = libv8-$(API)
-package_main = libv8-$(ABI)
+package_main = libv8-$(API)
 package_dev = libv8-$(API)-dev
 
 TMP_LIB_DIR = $(CURDIR)/debian/tmp/opt_lib/$(package)/lib
