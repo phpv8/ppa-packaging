@@ -1,3 +1,10 @@
+libv8-6.1 (6.1.344-ppa1~DISTRO) DISTRO; urgency=medium
+
+  * New version based on 6.1.344
+    (https://chromium.googlesource.com/v8/v8.git)
+
+ -- Bogdan Padalko <pinepain@gmail.com>  Sat, 01 Jul 2017 16:22:28 +0000
+
 libv8-6.1 (6.1.343-ppa1~DISTRO) DISTRO; urgency=medium
 
   * New version based on 6.1.343
