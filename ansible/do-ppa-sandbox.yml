@@ -22,7 +22,7 @@
 
     system_ppas:
       - ppa:ondrej/php
-      - ppa:pinepain/libv8-6.0
+      - ppa:pinepain/libv8-6.1
 
     system_install_packages:
       - cdbs
