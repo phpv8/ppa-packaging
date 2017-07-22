@@ -1,3 +1,10 @@
+php-ref (0.4.4-ppa1~DISTRO) DISTRO; urgency=medium
+
+  * New version based on v0.4.4 (https://github.com/pinepain/php-
+    ref.git)
+
+ -- Bogdan Padalko <pinepain@gmail.com>  Sat, 22 Jul 2017 11:57:19 +0000
+
 php-ref (0.4.3-ppa1~DISTRO) DISTRO; urgency=medium
 
   * New version based on v0.4.3 (https://github.com/pinepain/php-

@@ -7,7 +7,7 @@ PECL_NAME=ref
 NAME=php-${PECL_NAME}
 
 # Package version
-VERSION=0.4.3
+VERSION=0.4.4
 
 # Tag name or commit hash for checkout
 GIT_VERSION="v${VERSION}"
