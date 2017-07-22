@@ -33,7 +33,7 @@
       - curl
       - php-all-dev
       - dh-php
-      - libv8-6.0-dev
+      - libv8-6.1-dev
 
   roles:
     - system
