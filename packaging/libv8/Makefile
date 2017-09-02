@@ -2,12 +2,12 @@
 GIT_URL=https://chromium.googlesource.com/v8/v8.git
 
 # Tag name or commit hash for checkout
-GIT_VERSION=6.2.2
+GIT_VERSION=6.3.2
 
 GIT_FAST=1
 
 # Package name
-NAME=libv8-6.2
+NAME=libv8-6.3
 
 # Package version
 VERSION=$(GIT_VERSION)
