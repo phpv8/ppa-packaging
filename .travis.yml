@@ -1,0 +1,25 @@
+dist: trusty
+sudo: required
+
+services:
+ - docker
+env:
+  - DEBFULLNAME="Bogdan Padalko (Automated PPA Upload Key)"
+    DEBEMAIL="pinepain@gmail.com"
+
+before_install:
+  - export TARGET_DIR=`echo ${TRAVIS_COMMIT_MESSAGE} | sed 's/^build\s\+\([a-z0-9-]\+\)$/\1/'`
+  - env
+  - if [ ! -d "./packaging/${TARGET_DIR}" ]; then echo "Target directory \"${TARGET_DIR}\" does not exists"; exit 1; fi
+  - echo $TRAVIS_GPG_PUBLIC_KEY | base64 --decode > packaging/public.key
+  - echo $TRAVIS_GPG_PRIVATE_KEY | base64 --decode > packaging/private.key
+  - docker build -t ${TRAVIS_REPO_SLUG} .
+
+install: skip
+
+script:
+  - >
+    docker run -it -e DEBFULLNAME -e DEBEMAIL -e TARGET_DIR \
+      -v `pwd`/packaging:/root/packaging ${TRAVIS_REPO_SLUG} \
+      bash -c "ls -la && gpg --import public.key && gpg --allow-secret-key-import --import private.key && gpg --fingerprint \
+               && cd $TARGET_DIR && make clean && make dput"
