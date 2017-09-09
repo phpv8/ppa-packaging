@@ -10,9 +10,9 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     apt-get update && \
     mkdir /root/packaging
 
-RUN apt-get install -y cdbs devscripts dh-buildinfo pkg-config php-all-dev dh-php
+RUN apt-get install -y cdbs devscripts dh-buildinfo pkg-config php-all-dev dh-php git vim
 
-RUN apt-get install -y git
+RUN sed -i "s/progress_indicator\s*=\s*2/progress_indicator = 0/" /etc/dput.cf
 
 
 WORKDIR /root/packaging
