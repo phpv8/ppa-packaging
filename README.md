@@ -1,4 +1,4 @@
-Semi-automated script to create binary packages for (multiple version) of Ubuntu
+Semi-automated script to create binary packages for (multiple version) of Ubuntu [![Build Status](https://travis-ci.org/pinepain/ppa-packaging.svg?branch=master)](https://travis-ci.org/pinepain/ppa-packaging)
 ==============================
 
 Based on https://github.com/named-data/ppa-packaging and http://anonscm.debian.org/git/collab-maint/libv8.git
