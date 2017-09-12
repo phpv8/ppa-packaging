@@ -23,3 +23,10 @@ script:
       -v `pwd`/packaging:/root/packaging ${TRAVIS_REPO_SLUG} \
       bash -c "ls -la && gpg --import public.key && gpg --allow-secret-key-import --import private.key && gpg --fingerprint \
                && cd $TARGET_DIR && make clean && make dput"
+
+after_success:
+ - git remote add upstream "https://$GH_TOKEN@github.com/pinepain/ppa-packaging.git"
+ - git config user.name "$COMMIT_AUTHOR_NAME (Travis CI)"
+ - git config user.email "$COMMIT_AUTHOR_EMAIL"
+ - git commit -m "Build and deploy ${TARGET_DIR} source package [skip ci]" ./packaging
+ - git push
