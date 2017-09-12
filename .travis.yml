@@ -2,7 +2,8 @@ dist: trusty
 sudo: required
 
 services:
- - docker
+  - docker
+
 env:
   - DEBFULLNAME="Bogdan Padalko (Automated PPA Upload Key)"
     DEBEMAIL="pinepain@gmail.com"
@@ -13,6 +14,9 @@ before_install:
   - if [ ! -d "./packaging/${TARGET_DIR}" ]; then echo "Target directory \"${TARGET_DIR}\" does not exists"; exit 1; fi
   - echo $TRAVIS_GPG_PUBLIC_KEY | base64 --decode > packaging/public.key
   - echo $TRAVIS_GPG_PRIVATE_KEY | base64 --decode > packaging/private.key
+  - git remote add upstream "https://$GH_TOKEN@github.com/${TRAVIS_REPO_SLUG}.git"
+  - git config user.name "`git log -1 --pretty=format:'%an'` (Travis CI)"
+  - git config user.email "`git log -1 --pretty=format:'%ae'`"
   - docker build -t ${TRAVIS_REPO_SLUG} .
 
 install: skip
@@ -25,8 +29,8 @@ script:
                && cd $TARGET_DIR && make clean && make dput"
 
 after_success:
- - git remote add upstream "https://$GH_TOKEN@github.com/pinepain/ppa-packaging.git"
- - git config user.name "$COMMIT_AUTHOR_NAME (Travis CI)"
- - git config user.email "$COMMIT_AUTHOR_EMAIL"
- - git commit -m "Build and deploy ${TARGET_DIR} source package [skip ci]" ./packaging
- - git push
+  - git status
+  - git checkout ${TRAVIS_BRANCH}
+  - git commit -m "Build and deploy ${TARGET_DIR} source package [skip ci]" ./packaging
+  - git pull --rebase origin ${TRAVIS_BRANCH}
+  - git push upstream HEAD:${TRAVIS_BRANCH}
