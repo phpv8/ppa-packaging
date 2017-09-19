@@ -15,8 +15,8 @@ before_install:
   - echo $TRAVIS_GPG_PUBLIC_KEY | base64 --decode > packaging/public.key
   - echo $TRAVIS_GPG_PRIVATE_KEY | base64 --decode > packaging/private.key
   - git remote add upstream "https://$GH_TOKEN@github.com/${TRAVIS_REPO_SLUG}.git"
-  - git config user.name "`git log -1 --pretty=format:'%an'` (Travis CI)"
-  - git config user.email "`git log -1 --pretty=format:'%ae'`"
+  - git config --global user.name "Travis CI"
+  - git config --global user.email "travis@travis-ci.org"
   - docker build -t ${TRAVIS_REPO_SLUG} .
 
 install: skip
