@@ -25,7 +25,7 @@ script:
   - >
     docker run -it -e DEBFULLNAME -e DEBEMAIL -e TARGET_DIR \
       -v `pwd`/packaging:/root/packaging ${TRAVIS_REPO_SLUG} \
-      bash -c "ls -la && gpg --import public.key && gpg --allow-secret-key-import --import private.key && gpg --fingerprint \
+      bash -c "gpg --import public.key && gpg --allow-secret-key-import --import private.key && gpg --fingerprint \
                && cd $TARGET_DIR && make clean && make dput"
 
 after_success:
