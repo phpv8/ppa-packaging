@@ -47,8 +47,15 @@ To build binary package that can be installed with `dpkg -i <package>.deb`:
 
 The build package will be in `<package-folder>/work/<package-name>_<version>.deb`
 
-Building
---------
+Building using Travis-CI
+------------------------
+
+By default Travis-CI is used to building source package and push to PPA. That's done by pushing a commit with a message
+in a format `build <dir name under packaging/ folder>`. All other commits should go with `[skip ci]` to do not abuse
+travis and to avoid yielding red builds.
+
+Building on DigitalOcean
+------------------------
 
 I use DigitalOcean machine to make source builds, you can use whatever you want, from docket and vagrant to Travis CI
 and Jenkins slaves.
