@@ -1,5 +1,5 @@
 # List of target distributions
-DISTROS=trusty xenial zesty
+DISTROS=trusty xenial zesty artful
 
 PECL_FULL_NAME=${PECL_NAME}-${VERSION}
 

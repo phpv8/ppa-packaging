@@ -1,5 +1,4 @@
 # List of target distributions
-#DISTROS=trusty xenial zesty
 
 work/${NAME}_${VERSION}:
 	\
