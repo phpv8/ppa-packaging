@@ -3,6 +3,7 @@ Priority: optional
 Maintainer: Bogdan Padalko <pinepain@gmail.com>
 Build-Depends: @cdbs@,
  git,
+ libglib2.0-dev,
  python2.7,
  pkg-config
 Standards-Version: 3.9.8
