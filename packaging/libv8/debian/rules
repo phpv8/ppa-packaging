@@ -85,6 +85,7 @@ common-install-impl::
 	mkdir -p $(TMP_INCLUDE_DIR) ; \
 	cd $(TMP_INCLUDE_DIR) ; \
 	cp -R $(CURDIR)/v8/include/*.h . ; \
+	cp $(outdir)/gn_args.txt . ; \
 	mkdir -p $(TMP_INCLUDE_DIR)/libplatform ; \
 	cd $(TMP_INCLUDE_DIR)/libplatform ; \
 	cp -R $(CURDIR)/v8/include/libplatform/*.h . ; \

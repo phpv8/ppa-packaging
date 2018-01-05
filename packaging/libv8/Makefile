@@ -2,7 +2,7 @@
 GIT_URL=https://chromium.googlesource.com/v8/v8.git
 
 # Tag name or commit hash for checkout
-GIT_VERSION=6.5.116
+GIT_VERSION=6.5.144
 
 GIT_FAST=1
 
@@ -15,7 +15,7 @@ VERSION=$(GIT_VERSION)
 # PPA version
 PPA_VERSION=1
 
-PPA=ppa:pinepain/libv8-experimental
+PPA=ppa:pinepain/libv8-testing
 
 
 include ./packaging.mk

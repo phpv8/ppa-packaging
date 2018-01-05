@@ -8,5 +8,6 @@ clean:
 
 x64.release:
 	cd v8 ; \
-	gn gen out.gn/x64.release --args="is_debug=false is_official_build=true is_component_build=true is_cfi=false is_clang=false v8_use_external_startup_data=false treat_warnings_as_errors=false use_custom_libcxx=false use_sysroot=false use_gold=false" ; \
+	gn gen out.gn/x64.release --args="is_debug=false is_official_build=true is_component_build=true is_cfi=false is_clang=false v8_use_external_startup_data=false treat_warnings_as_errors=false use_custom_libcxx=false use_sysroot=false use_gold=false use_allocator_shim=false" ; \
+	gn args out.gn/x64.release --list > out.gn/x64.release/gn_args.txt ; \
 	ninja -j $(NPROCS) -v d8 -C out.gn/x64.release ; \
