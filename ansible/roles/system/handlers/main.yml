@@ -1,6 +1,0 @@
----
-- name: Restart sshd
-  action: service name=ssh state=restarted
-
-- name: update tzdata
-  command: dpkg-reconfigure --frontend noninteractive tzdata

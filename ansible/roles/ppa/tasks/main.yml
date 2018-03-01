@@ -1,5 +1,0 @@
-- name: Clone ppa-packaging repo
-  git:
-    repo: "{{ ppa_repo_url }}"
-    dest: "{{ ppa_clone_directory }}"
-  become: ansible
