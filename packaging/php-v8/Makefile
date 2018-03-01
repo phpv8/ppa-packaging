@@ -7,7 +7,7 @@ PECL_NAME=v8
 NAME=php-${PECL_NAME}
 
 # Package version
-VERSION=0.2.1
+VERSION=0.2.2
 
 # Tag name or commit hash for checkout
 GIT_VERSION="v${VERSION}"
@@ -16,7 +16,7 @@ GIT_FAST=1
 # PPA version
 PPA_VERSION=1
 
-PPA=ppa:pinepain/php-v8
+PPA=ppa:pinepain/experimental
 
 include ../packaging-pecl.mk
 include ../packaging-base.mk
