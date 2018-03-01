@@ -1,3 +1,9 @@
+php-v8 (0.2.2-ppa1~DISTRO) DISTRO; urgency=medium
+
+  * New version based on v0.2.2 (https://github.com/pinepain/php-v8.git)
+
+ -- Bogdan Padalko (Automated PPA Upload Key) <pinepain@gmail.com>  Thu, 01 Mar 2018 17:34:09 +0000
+
 php-v8 (0.2.0-ppa1~DISTRO) DISTRO; urgency=medium
 
   * New version based on v0.2.0 (https://github.com/pinepain/php-v8.git)
