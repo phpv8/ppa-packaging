@@ -15,7 +15,7 @@ VERSION=$(GIT_VERSION)
 # PPA version
 PPA_VERSION=1
 
-PPA=ppa:pinepain/libv8-testing
+PPA=ppa:pinepain/experimental
 
 
 include ./packaging.mk

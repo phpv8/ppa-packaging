@@ -16,7 +16,7 @@ GIT_FAST=1
 # PPA version
 PPA_VERSION=1
 
-PPA=ppa:pinepain/php-ref
+PPA=ppa:pinepain/experimental
 
 include ../packaging-pecl.mk
 include ../packaging-base.mk
