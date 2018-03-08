@@ -1,3 +1,10 @@
+php-ref (0.6.0-ppa1~DISTRO) DISTRO; urgency=medium
+
+  * New version based on v0.6.0 (https://github.com/pinepain/php-
+    ref.git)
+
+ -- Bogdan Padalko (Automated PPA Upload Key) <pinepain@gmail.com>  Thu, 08 Mar 2018 15:02:21 +0000
+
 php-ref (0.5.0-ppa1~DISTRO) DISTRO; urgency=medium
 
   * New version based on v0.5.0 (https://github.com/pinepain/php-
