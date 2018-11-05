@@ -33,7 +33,7 @@ pipeline {
                 sh 'git config --global user.email "stesie+buildbot@brokenpipe.de"'
                 sh 'git add packaging/libv8/debian/changelog'
                 sh 'git commit -m "Build and deploy libv8 source package"'
-                sh 'git push upstream stesie'
+                sh 'git push upstream HEAD:stesie'
             }
         }
     }
