@@ -1,20 +1,20 @@
 Source: libv8-6.6
 Priority: optional
-Maintainer: Bogdan Padalko <pinepain@gmail.com>
+Maintainer: Stefan Siegl <stesie@brokenpipe.de>
 Build-Depends: cdbs,
  autotools-dev,
- licensecheck,
+ devscripts,
  debhelper,
  dh-buildinfo,
  git,
  libglib2.0-dev,
- python2.7,
+ python,
  pkg-config
 Standards-Version: 3.9.8
 Section: libs
 Homepage: https://developers.google.com/v8/
-Vcs-Browser: https://github.com/pinepain/php-v8
-Vcs-Git: https://github.com/pinepain/php-v8.git
+Vcs-Browser: https://github.com/phpv8/ppa-packaging
+Vcs-Git: https://github.com/phpv8/ppa-packaging.git
 
 Package: libv8-6.6
 Architecture: amd64
