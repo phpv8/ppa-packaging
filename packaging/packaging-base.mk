@@ -47,8 +47,8 @@ _build: distro
 	  rm -Rf debian ; cp -r ../../debian . ; \
 	  sed -i -e "s/DISTRO/$$distro/g" debian/changelog ; \
 	  for file in debian/*.$$distro; do \
-	    if [ -f $$file ]; then \
-	      rename -f "s/\.$$distro$$//" $$file ; \
+	    if [ -f "$$file" ]; then \
+	      rename -f "s/\.$$distro$$//" "$$file" ; \
 	    fi ; \
 	  done ; \
 	  CUR_NAME=`dpkg-parsechangelog | grep '^Source: ' | awk '{print $$2}'`; \
