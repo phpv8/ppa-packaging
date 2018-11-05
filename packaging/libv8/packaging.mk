@@ -16,7 +16,7 @@ work/${NAME}_${VERSION}:
 	cp ./../../stub-gclient-spec .gclient ; \
 	cp ./../../Makefile.target Makefile ; \
 	git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git ; \
-	export PATH=`pwd`/depot_tools:"${PATH}" ; \
+	export PATH="`pwd`/depot_tools":"${PATH}" ; \
 	gclient sync -j ${NPROCS} -r ${VERSION} ; \
 	cd .. ; \
 	tar --exclude='./debian' --exclude .git --exclude '*.pyc' -cf - ${NAME}_${VERSION} | gzip -n9c > ${NAME}_${VERSION}.orig.tar.gz ; \
