@@ -1,4 +1,4 @@
-Source: libv8-6.6
+Source: libv8-7.1
 Priority: optional
 Maintainer: Stefan Siegl <stesie@brokenpipe.de>
 Build-Depends: cdbs,
@@ -16,7 +16,7 @@ Homepage: https://developers.google.com/v8/
 Vcs-Browser: https://github.com/phpv8/ppa-packaging
 Vcs-Git: https://github.com/phpv8/ppa-packaging.git
 
-Package: libv8-6.6
+Package: libv8-7.1
 Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: V8 JavaScript engine - runtime library
@@ -25,21 +25,21 @@ Description: V8 JavaScript engine - runtime library
  .
  This package provides the dynamic library for V8.
 
-Package: libv8-6.6-dev
+Package: libv8-7.1-dev
 Section: libdevel
 Architecture: amd64
-Depends: libv8-6.6 (= ${binary:Version}), ${misc:Depends}
-Description: V8 JavaScript engine - development files for 6.6 branch
+Depends: libv8-7.1 (= ${binary:Version}), ${misc:Depends}
+Description: V8 JavaScript engine - development files for 7.1 branch
  V8 is a high performance JavaScript engine written in C++.
  It is used in the web browser Chromium.
  .
- This package provide development headers for V8 6.6 branch.
+ This package provide development headers for V8 7.1 branch.
 
-Package: libv8-6.6-dbg
+Package: libv8-7.1-dbg
 Priority: extra
 Section: debug
 Architecture: amd64
-Depends: libv8-6.6 (= ${binary:Version}), ${misc:Depends}
+Depends: libv8-7.1 (= ${binary:Version}), ${misc:Depends}
 Description: V8 JavaScript engine - debugging symbols
  V8 is a high performance JavaScript engine written in C++.
  It is used in the web browser Chromium.
