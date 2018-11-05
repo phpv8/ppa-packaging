@@ -23,7 +23,7 @@ source-build:
 	$(MAKE) _build DEBUILD="debuild -S -sa"
 
 source-clean:
-	DEB_MAINTAINER_MODE=1 debuild -- clean
+	DEB_MAINTAINER_MODE=1 debuild clean
 
 build:
 	$(MAKE) _build DEBUILD=debuild
@@ -57,7 +57,7 @@ _build: distro
 	    echo "New version. Will update changelog and build source package" ; \
 	    dch -v $$NEW_VER --package="${NAME}" -D $$distro --force-distribution \
 	        "New version based on ${GIT_VERSION} (${GIT_URL})" ; \
-	    DEB_MAINTAINER_MODE=1 debuild -- clean ; \
+	    DEB_MAINTAINER_MODE=1 debuild clean ; \
 	  else \
 	    if dpkg --compare-versions $$NEW_VER ne $$CUR_VER; then \
 	      echo "ERROR: Cannot rebuild source package, because new version is earlier \
@@ -82,7 +82,7 @@ dput: source-build
 	if dpkg --compare-versions $$NEW_VER gt $$CUR_VER; then \
 	  dch -v $$NEW_VER --package="${NAME}" -D DISTRO --force-distribution \
 	      "New version based on ${GIT_VERSION} (${GIT_URL})" ; \
-	  DEB_MAINTAINER_MODE=1 debuild -- clean ; \
+	  DEB_MAINTAINER_MODE=1 debuild clean ; \
 	fi
 
 clean:
