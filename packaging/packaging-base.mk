@@ -1,5 +1,5 @@
 # List of target distributions
-DISTROS=xenial artful
+DISTROS=xenial bionic
 
 DEBUILD=debuild -S
 
