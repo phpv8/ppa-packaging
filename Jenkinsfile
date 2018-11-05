@@ -8,6 +8,7 @@ pipeline {
         GPG_PRIVATE_KEY = credentials('GPG_PRIVATE_KEY')
         DEBFULLNAME = "Stefan Siegl (Automatic Signing Key)"
         DEBEMAIL = "stesie+buildbot@brokenpipe.de"
+        USER = "stesie"
     }
     stages {
         stage('Prepare') {
