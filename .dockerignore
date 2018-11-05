@@ -1,4 +1,6 @@
-*/work
+Dockerfile
+
+**/work
 *~
 .deb/*
 *.orig.tar.gz
