@@ -13,7 +13,7 @@ NAME=libv8-7.1
 VERSION=$(GIT_VERSION)
 
 # PPA version
-PPA_VERSION=2
+PPA_VERSION=1
 
 PPA=ppa:stesie/libv8
 
