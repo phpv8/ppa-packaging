@@ -5,6 +5,7 @@ Build-Depends: @cdbs@,
  git,
  libglib2.0-dev,
  python,
+ libatspi2.0-dev,
  pkg-config
 Standards-Version: 3.9.8
 Section: libs
