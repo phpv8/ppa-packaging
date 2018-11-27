@@ -3,7 +3,6 @@ Priority: optional
 Maintainer: Stefan Siegl <stesie@brokenpipe.de>
 Build-Depends: @cdbs@,
  git,
- patchelf,
  libglib2.0-dev,
  python,
  libatspi2.0-dev,
