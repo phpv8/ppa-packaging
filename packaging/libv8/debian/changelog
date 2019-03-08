@@ -1,3 +1,10 @@
+libv8-7.1 (7.2.502.28-ppa1~DISTRO) DISTRO; urgency=medium
+
+  * New version based on 7.2.502.28
+    (https://chromium.googlesource.com/v8/v8.git)
+
+ -- Stefan Siegl (Automatic Signing Key) <stesie+buildbot@brokenpipe.de>  Fri, 08 Mar 2019 08:36:01 +0100
+
 libv8-7.1 (7.1.302.23-ppa1~DISTRO) DISTRO; urgency=medium
 
   * New version based on 7.1.302.23
