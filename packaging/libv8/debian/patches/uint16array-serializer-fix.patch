@@ -22,8 +22,8 @@ Cr-Commit-Position: refs/heads/master@{#60094}
 
 Index: v8/src/snapshot/partial-serializer.cc
 ===================================================================
---- a/libv8-7.2_7.2.502.28/src/snapshot/partial-serializer.cc
-+++ b/libv8-7.2_7.2.502.28/src/snapshot/partial-serializer.cc
+--- a/v8/src/snapshot/partial-serializer.cc
++++ b/v8/src/snapshot/partial-serializer.cc
 @@ -140,7 +140,6 @@ bool PartialSerializer::SerializeJSObjec
    int embedder_fields_count = js_obj->GetEmbedderFieldCount();
    if (embedder_fields_count == 0) return false;
@@ -55,8 +55,8 @@ Index: v8/src/snapshot/partial-serializer.cc
  
 Index: v8/test/cctest/test-serialize.cc
 ===================================================================
---- a/libv8-7.2_7.2.502.28/test/cctest/test-serialize.cc
-+++ b/libv8-7.2_7.2.502.28/test/cctest/test-serialize.cc
+--- a/v8/test/cctest/test-serialize.cc
++++ b/v8/test/cctest/test-serialize.cc
 @@ -1098,6 +1098,44 @@ UNINITIALIZED_TEST(CustomSnapshotDataBlo
    FreeCurrentEmbeddedBlob();
  }
