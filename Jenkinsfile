@@ -38,7 +38,7 @@ pipeline {
                 sh 'git config --global user.email "stesie+buildbot@brokenpipe.de"'
                 sh 'git add packaging/libv8'
                 sh 'git commit -m "Build and deploy libv8 source package"'
-                sh 'git push "https://$GH_TOKEN@github.com/phpv8/ppa-packaging.git" HEAD:stesie'
+                sh 'git push "https://$GH_TOKEN@github.com/phpv8/ppa-packaging.git" HEAD:master'
             }
         }
     }
