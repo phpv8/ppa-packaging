@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+version="$(curl -s 'https://omahaproxy.appspot.com/all.json?os=win64&channel=stable' | jq '.[0].versions[0].v8_version' | tr -d '\"')"
+package_version="$(echo $version | sed -e 's/\([0-9]\+\.[0-9]\+\).*/\1/')"
+
+# set GIT_VERSION
+sed -e "s/GIT_VERSION=.*/GIT_VERSION=$version/" -i Makefile
+
+# set package version
+sed -e "s/libv8-[0-9]\\+.[0-9]\\+/libv8-$package_version/" -i Makefile debian/control*
+sed -e "s/[0-9]\\+.[0-9]\\+ branch/$package_version branch/" -i debian/control*
+
+# insert changelog entry, if not present
+if head -n 1 debian/changelog  | grep -qve "$version"; then
+    (
+        echo "libv8-$package_version ($version-ppa1~DISTRO) DISTRO; urgency=medium";
+        echo "";
+        echo "  * New version based on $version";
+        echo "    (https://chromium.googlesource.com/v8/v8.git)";
+        echo "";
+        echo -n " -- Stefan Siegl (Automatic Signing Key) <stesie+buildbot@brokenpipe.de>  "; date -R;
+        echo "";
+        cat debian/changelog
+    ) | sponge debian/changelog
+fi
