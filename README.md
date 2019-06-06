@@ -10,11 +10,6 @@ Based on https://github.com/named-data/ppa-packaging and http://anonscm.debian.o
 
 See [pinepain/devtools](https://github.com/pinepain/homebrew-devtools) tap for homebrew formulae.
 
-### PLEASE READ:
-
-Maintaining this project takes significant amount of time and efforts.
-If you like my work and want to show your appreciation, please consider supporting me at https://www.patreon.com/pinepain.
-
 Prerequisites
 -------------
 
