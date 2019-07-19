@@ -46,3 +46,36 @@ Description: V8 JavaScript engine - debugging symbols
  It is used in the web browser Chromium.
  .
  This package provides the debugging symbols for the library.
+
+Package: libv8
+Architecture: amd64
+Depends: libv8-7.5
+Description: V8 JavaScript engine - runtime library
+ V8 is a high performance JavaScript engine written in C++.
+ It is used in the web browser Chromium.
+ .
+ This meta package depends on the latest version of the dynamic
+ library for V8.
+
+Package: libv8-dev
+Section: libdevel
+Architecture: amd64
+Depends: libv8-7.5-dev
+Description: V8 JavaScript engine - development files for 7.5 branch
+ V8 is a high performance JavaScript engine written in C++.
+ It is used in the web browser Chromium.
+ .
+ This meta package depends on the latest version of development
+ headers for V8 7.5 branch.
+
+Package: libv8-dbg
+Priority: extra
+Section: debug
+Architecture: amd64
+Depends: libv8-7.5-dbg
+Description: V8 JavaScript engine - debugging symbols
+ V8 is a high performance JavaScript engine written in C++.
+ It is used in the web browser Chromium.
+ .
+ This meta package depends on the latest version of debugging
+ symbols for the library.
